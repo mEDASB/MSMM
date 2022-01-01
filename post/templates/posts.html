@@ -1,0 +1,120 @@
+{% extends "main_STE.html" %} 
+{% load static %}
+
+
+{% load crispy_forms_tags %} 
+
+
+{% block Content %}
+
+<div class="container">
+
+    
+
+    
+
+
+    
+      
+    <div class="card mt-5">
+        <div class="card-header position-relative p-3">
+          Featured
+
+          {% if request.user.societe %}
+
+          <a href="{% url 'create' %}" class="btn btn-success position-absolute top-0 end-0 ">Create</a>
+
+            
+          {% endif %}
+
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row w-100">
+
+                  <div class="col  border border-secondary d-flex">
+                    <div class="card m-3 badge bg-dark w-100 d-flex">
+
+                        <form class="">         
+
+                            <span class="badge bg-dark ml-5"><h5>{{filter_Ste.form.create_at|as_crispy_field}}</h5>  </span> 
+
+                             <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="row w-100">
+
+                   
+                    <div class="col  p-3  border border-secondary flex-grow-1 m-auto">
+                        <!-- All -->
+                        {% for post in page_objAll %}
+  
+                          <div class="card w-80 m-5">
+                              <div class="card-header">
+                                  {{post.ste.name_STE|upper}} :
+                                  <span class="badge bg-dark">{{post.title|upper}}</span> 
+                                  <div>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        ...
+                                      </a>
+                                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                      </ul>
+                                  </div>
+                              </div>
+
+                              <div class="card-body">
+                                  <h5 class="card-title"><span>Date d'expiration</span> : {{post.date_experation|upper}}</h5>
+                                  <p class="card-text">{{post.Description|upper}}</p>
+                                  <a href="{% url 'post' post.id %}" class="btn btn-primary">Show</a>
+                              </div>
+                          </div>
+                          
+                        {% endfor %}
+
+
+                        
+  
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- paginator -->
+    <div class="pagination ">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    
+    
+</div>
+
+
+
+
+
+{% endblock Content %}

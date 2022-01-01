@@ -1,15 +1,9 @@
-# from django.urls import path
-# from . import views
+from django.urls import path
+from . import views
 
-# urlpatterns = [
-#     path('/home/', views.MEgoHome,name='homeME'),
-#     path('/Profile/', views.MEgoProfile,name='ProfileME'),
-
-#     # U Profile ME
-#     path('/update/<str:pk>', views.MEgoProfile,name='update'),
-
-#     # CRUD 
-#     path('/delete/<str:pk>', views.MEgoProfile,name='delete'),
-
-
-# ]
+urlpatterns = [    
+    path('mes/', views.goMes,name='mes'),
+    path('me_profile/<str:pk>', views.goProfile,name='me_profile'),
+    path('me_myprofile/', views.ME_MyProfile,name='me_myprofile'),
+    path('edit_info', views.editInfo,name='editInfo'),
+]

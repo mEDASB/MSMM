@@ -21,7 +21,7 @@ class Material(models.Model):
    # location => True , vendre => False
    VL = models.BooleanField(null=False)
    # not busy => True , busy => False
-   Busy = models.BooleanField(null=True,default=False)
+   # Busy = models.BooleanField(null=True,default=False)
    photo = models.ImageField(null=False)
    ste = models.ForeignKey(Societe, on_delete=models.CASCADE)
    me = models.ForeignKey(ME, on_delete=models.CASCADE)  

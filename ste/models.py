@@ -18,9 +18,11 @@ class Societe(models.Model):
    ville = models.CharField(max_length=100,null=False,choices=villes)
    photo = models.ImageField(blank=True,null=True)
    created_at = models.DateTimeField(auto_now_add=True)
-   name_STE = models.CharField(('name_STE'), unique=True,max_length=10,null=False)
+   name_STE = models.CharField(unique=True,max_length=50,null=False)
    web_Site = models.CharField(max_length=50,null=True)
+   desc = models.TextField(null=True)
    cp_proof = models.ImageField(null=False)
+   active = models.BooleanField(null=True,default=False)
    DOMAINES = (
       ('in progress','in progress'),
       ('out the order','out the order'),

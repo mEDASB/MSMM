@@ -1,0 +1,28 @@
+{% extends "main_STE.html" %} 
+{% load static %}
+
+
+
+{% block Content %}
+
+
+
+<div class="container pt-5">
+    <h2>are you sure ?</h2>
+    <a class="btn-success" href="{% url 'posts' %}">Cancel</a>
+
+    
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">DELETE</button>
+    </form>
+
+  
+</div>
+
+
+
+
+
+{% endblock Content %}

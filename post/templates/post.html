@@ -1,0 +1,54 @@
+{% extends "main_STE.html" %} 
+{% load static %}
+
+
+
+{% block Content %}
+
+<h1>POST {{ post.ste }}</h1>
+   {% if var == 2 %}
+
+   <div>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ...
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'update' post.id  %}">Edit</a></li>
+            <li><a class="dropdown-item" href="{% url 'delete' post.id %}">Delete</a></li>
+            
+              
+        </ul>
+    </div>
+     
+   {% endif %}
+
+<form action="" method="POST">
+
+    {% csrf_token %}
+
+    {% if request.user.me %}
+
+
+        {% if var == 0 %}
+
+            <a href="{% url 'request' post.id %}" class="btn btn-success">Request</a>
+            <!-- <a href="#" class="btn btn-success">Request</a> -->
+
+        
+        {% elif var == 1 %}
+
+            <a href="{% url 'unrequest' post.id %}" class="btn btn-success">None</a>
+
+        {% endif %}
+      
+    {% endif %}
+
+
+</form>
+
+<h3>{{post.count_Dommand}}</h3>
+
+
+
+
+{% endblock Content %}

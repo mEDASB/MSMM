@@ -46,6 +46,13 @@ INSTALLED_APPS = [
     'materiel',
     'payment',
     'post',
+    
+    'django_filters',
+    'crispy_forms',
+    "bootstrap4",
+    "bootstrap_datepicker_plus"
+
+
 
 ]
 
@@ -171,3 +178,7 @@ EMAIL_HOST_PASSWORD = 'Xr9mPnUa3DkasSN'
 
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LfWgW8dAAAAAN79wekbqe9t56ccSml3qrR-nAlO'
+
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

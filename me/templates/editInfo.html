@@ -1,0 +1,40 @@
+{% extends "main_ME.html" %} 
+{% load static %}
+
+
+
+
+{% block Content %}
+
+<div class="container">
+
+
+    
+    
+
+
+        <form action="" method="POST" enctype="multipart/form-data">
+
+
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <input type="submit" class="btn btn-primary">
+
+
+        </form>
+      
+      
+    
+    
+    
+    
+    
+    
+</div>
+
+
+
+
+
+{% endblock Content %}
