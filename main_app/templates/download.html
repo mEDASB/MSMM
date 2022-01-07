@@ -1,0 +1,69 @@
+{% extends "main.html" %} 
+{% load static %}
+
+
+
+
+{% block Content %}
+
+<div id="intro" class="container p-5 text-center bg-image shadow-1-strong">
+
+    <div class="container">
+
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+        </div>
+
+    </div>
+
+
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">App</th>
+              <th scope="col">Android</th>
+              <th scope="col">Iphone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>MSMM1.0</td>
+              <th scope="row">
+                  <a href="#">download</a>
+              </th>
+              <th scope="row">
+                  <a href="#">download</a>
+              </th>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>MSMM2.0</td>
+              <th scope="row">
+                  <a href="#">download</a>
+              </th>
+              <th scope="row">
+                  <a href="#">download</a>
+              </th>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>MSMM3.0</td>
+                <th scope="row">
+                    <a href="#">download</a>
+                </th>
+                <th scope="row">
+                    <a href="#">download</a>
+                </th>
+            </tr>
+          </tbody>
+    </table>
+
+
+</div>
+
+
+
+{% endblock Content %}

@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +56,69 @@
         </ul>
       </div>
     </div>
+  </nav> -->
+  
+  
+
+
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" target="_blank" href="{% url 'posts' %}">
+        <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="16" alt="" loading="lazy"
+          style="margin-top: -3px;" />
+      </a>
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+        aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarExample01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link active" href="{% url 'posts' %}">Home
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'societes' %}">Societes
+          </li>
+          <li class="nav-item">
+
+            {% if request.user.societe %}
+
+              <a class="nav-link active" href="{% url 'mes' %}">ME
+
+            {% endif %}
+          </li>
+        </ul>
+
+        <ul class="navbar-nav d-flex flex-row">
+          <!-- Icons -->
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link active" href="{% url 'materiels' %}">Material
+            </a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+              {% if request.user.me %}
+                  <a class="nav-link" href="{% url 'me_myprofile' %}">Profile ME</a>
+              {% endif %}
+              {% if request.user.societe %}
+                  <a class="nav-link" href="{% url 'ste_myprofile' %}">Profile STE</a>
+              {% endif %}
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Setting
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'editInfo' %}">Edit infos</a></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
-  
-  
+  <!-- Navbar -->

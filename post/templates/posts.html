@@ -1,4 +1,4 @@
-{% extends "main_STE.html" %} 
+{% extends "main_Auth.html" %} 
 {% load static %}
 
 
@@ -7,7 +7,131 @@
 
 {% block Content %}
 
-<div class="container">
+
+
+
+<!-- Jumbotron -->
+<div id="intro" class="p-5 text-center bg-light">
+    <h1 class="mb-3 h2">Learn Bootstrap 5 with MDB</h1>
+    <p class="mb-3">Best & free guide of responsive web design</p>
+
+    {% if request.user.societe %}
+        <a href="{% url 'create' %}" class="btn btn-success position-absolute top-0 end-0 ">Create</a>
+    {% endif %}
+
+    <form class="container">         
+
+        <span class="badge bg-dark ml-5 w-100">
+            <h5 class="w-50">{{filter_Ste.form.create_at|as_crispy_field}}</h5>  
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </span> 
+
+            
+    </form>
+</div>
+    <!-- Jumbotron -->
+
+
+<main class="my-5">
+    <div class="container">
+      <!--Section: Content-->
+      <section class="text-center">
+        <h4 class="mb-5"><strong>Posts</strong></h4>
+
+
+
+            {% for post in page_objAll %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="https://mdbootstrap.com/img/new/standard/nature/023.jpg" class="img-fluid" />
+                        <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{post.ste.name_STE|upper}} :
+                            <span class="badge bg-dark">{{post.title|upper}}</span> 
+                        </h5>
+                        <p class="card-text">
+                            {{post.Description|upper}}
+                        </p>
+                        <a href="{% url 'post' post.id %}" class="btn btn-primary">Show</a>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+      </section>
+      <!--Section: Content-->
+
+      <!-- Pagination -->
+      <nav class="my-4" aria-label="...">
+        <ul class="pagination pagination-circle justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">2 <span class="sr-only">
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+            </span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
 
     
 
@@ -49,7 +173,6 @@
 
                    
                     <div class="col  p-3  border border-secondary flex-grow-1 m-auto">
-                        <!-- All -->
                         {% for post in page_objAll %}
   
                           <div class="card w-80 m-5">
@@ -83,7 +206,7 @@
                   </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -92,7 +215,7 @@
 
 
     <!-- paginator -->
-    <div class="pagination ">
+    <!-- <div class="pagination ">
         <span class="step-links">
             {% if page_obj.has_previous %}
                 <a href="?page=1">&laquo; first</a>
@@ -111,10 +234,11 @@
     </div>
     
     
-</div>
+</div> -->
 
 
 
 
 
 {% endblock Content %}
+

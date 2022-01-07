@@ -18,7 +18,7 @@ def goHome(request):
 
 def goDownload(request):
     context = {}
-    return render(request,'home.html',context)
+    return render(request,'download.html',context)
 
 
 
