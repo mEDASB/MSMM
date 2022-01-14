@@ -175,6 +175,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'smcor64@gmail.com'
 EMAIL_HOST_PASSWORD = 'Xr9mPnUa3DkasSN'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LfWgW8dAAAAAN79wekbqe9t56ccSml3qrR-nAlO'

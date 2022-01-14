@@ -1,11 +1,15 @@
 from django.shortcuts import render , redirect
 
 
-from .creation_forms import registerForm
+from .creation_forms import registerForm , ContactForm
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.models import Group
 from me.models import *
 from ste.models import *
+from .models import *
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+
 
 
 # Create your views here.
@@ -20,11 +24,6 @@ def goDownload(request):
     context = {}
     return render(request,'download.html',context)
 
-
-
-def goAbout(request):
-    context = {}
-    return render(request,'home.html',context)
 
 
 
@@ -92,3 +91,32 @@ def goLogin(request):
 def goLogout(request):
     logout(request)
     return redirect('login')
+
+
+
+
+
+def goContact(request):
+        if request.method == 'POST':
+            form = ContactForm(request.POST)
+            if form.is_valid():
+                form.save()
+                subject = "MSMM Messages" 
+                body = {
+                'first_name': form.cleaned_data['first_name'], 
+                'last_name': form.cleaned_data['last_name'], 
+                'email': form.cleaned_data['email'], 
+                'message':form.cleaned_data['message'], 
+                }
+                message = "\n".join(body.values())
+
+                try:
+                    send_mail(subject, message, form.cleaned_data['email'], ['smcor64@gmail.com']) 
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found.')
+                return redirect ("home")  
+        form = ContactForm()
+        context = {
+            'form':form,
+        }
+        return render(request,'contact_us.html',context)

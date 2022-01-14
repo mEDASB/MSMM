@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.goHome,name='home'),
     path('download_app/', views.goDownload,name='download'),
-    path('about_us/', views.goAbout,name='about_us'),
+    path('contact_us/', views.goContact,name='contact_us'),
 
     # Auth Links
     path('login/', views.goLogin,name='login'),

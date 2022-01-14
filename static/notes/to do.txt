@@ -1,0 +1,7 @@
+DONE-hidde download page 
+-make login and Register forms smalls allitel
+-better design for contact-us page
+-css profile STE and ME and Materiels
+-css home auth (posts)
+-make it all Arabic
+-css edit infos

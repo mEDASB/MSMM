@@ -16,7 +16,7 @@ class Societe(models.Model):
       ('Pending','Pending')
    )
    ville = models.CharField(max_length=100,null=False,choices=villes)
-   photo = models.ImageField(blank=True,null=True)
+   photo = models.ImageField(blank=True,null=True,default="profile.png")
    created_at = models.DateTimeField(auto_now_add=True)
    name_STE = models.CharField(unique=True,max_length=50,null=False)
    web_Site = models.CharField(max_length=50,null=True)
