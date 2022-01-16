@@ -1,0 +1,9 @@
+
+.container_contactus{
+    display:flex;
+    width:90%;
+    justify-content:space-around;
+    align-content: center;
+    margin-top: 50px;
+
+}

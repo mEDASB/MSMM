@@ -1,27 +1,38 @@
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+{% load static %}
 
-  <div class="container">
-    <div class="container d-flex">
-      <a class="navbar-brand" href="{% url 'home' %}">MSMM</a>
-      <button class="navbar-toggler nav-icon" type="button" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="" id="navbarSupportedContent">
-        <ul class="navbar-nav ">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'contact_us' %}">Contact-US</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Register</a>
-          </li>
-         
-      </div>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid container">
+    
+    <a class="navbar-brand mr-5 fs-5 fw-bolder" href="{% url 'home' %}">
+      
+      <span style="color: #887c90;">M</span>
+      <span style="color: #b59bb1;">S</span>
+      <span style="color: #e5bbce;">M</span>
+      M
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" style="color:#effbff;" href="{% url 'home' %}">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:#effbff;"  href="{% url 'contact_us' %}">Contact-US</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:#effbff;"  href="{% url 'login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:#effbff;"  href="{% url 'register' %}">Register</a>
+        </li>
     </div>
   </div>
 </nav>
+

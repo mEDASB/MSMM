@@ -1,0 +1,17 @@
+body{
+    background-color:#3d414b;
+ }
+ 
+ .container_register{
+     display:flex;
+     width:90%;
+     justify-content:space-around;
+     align-content: center;
+     margin-top: 50px;
+     margin-bottom: 50px;
+ 
+ }
+ 
+ .card_register{
+     width:70%
+ }

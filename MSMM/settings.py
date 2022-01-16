@@ -158,15 +158,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 
 
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR,'static/')
 ]
+
 
 MEDIA_URL =  '/images/'
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/images')
 
+
+
+STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),) # new
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # new
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
