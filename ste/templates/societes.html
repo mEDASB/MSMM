@@ -1,4 +1,4 @@
-{% extends "main_Auth.html" %} 
+{% extends "main_authenticated.html" %} 
 {% load static %}
 
 
@@ -7,109 +7,69 @@
 
 {% block Content %}
 
-<div class="container">
 
     
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    
+    <link rel="stylesheet" href="{% static 'css/societes.css' %}">
 
+<div class="container ">
+    <ul class="row portfolio lightbox list-unstyled mb-0 shuffle boxed-portfolio" id="grid" >
+        <div class="row text-left mb-3">
+            <div class="col-lg-15 mb-3 mb-sm-0">
+              <div class="mt-5 dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" style="width: 100%;">
+                
+                <form class="">         
 
-    
-      
-    <div class="card mt-5">
-        <div class="card-header position-relative p-3">
-          Featured
+                    <h5>{{filter_Ste.form.name_STE|as_crispy_field}}</h5>  
+                    <h5>{{filter_Ste.form.domaine|as_crispy_field}}</h5>  
 
-        </div>
-        <div class="card-body">
-            <div class="container">
-                <div class="row w-100">
-
-                  <div class="col  border border-secondary d-flex">
-                    <div class="card m-3 badge bg-dark w-100 d-flex">
-
-                        <form class="">         
-
-                            <span class="badge bg-dark ml-5"><h5>{{filter_Ste.form.name_STE|as_crispy_field}}</h5>  </span> 
-                            <span class="badge bg-dark ml-5"><h5>{{filter_Ste.form.domaine|as_crispy_field}}</h5>  </span> 
-
-                            <span> <button class="btn btn-outline-success ml-5" type="submit">Search</button></span>
-                        </form>
-                    </div>
-
-                    <!-- <div class="card m-3">
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                            <label class="btn btn-outline-primary" for="btnradio1">All</label>
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" >
-                            <label class="btn btn-outline-primary" for="btnradio2">this day</label>
-                          
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio3">this Week</label>
-                          
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio4">this Month</label>
-                          </div>
-                    </div> -->
-
-                  </div>
-                </div>
-                <div class="row w-100">
-
-                   
-                    <div class="col  p-3  border border-secondary flex-grow-1 m-auto">
-                        <!-- All -->
-                        {% for ste in page_objAll %}
-  
-                          <div class="card w-80 m-5">
-                              <div class="card-header">
-                                  <h3>{{ ste.name_STE }}</h3>
-                              </div>
-
-                              <div class="card-body">
-                                  <a href="{% url 'p_societe' ste.id %}" class="btn btn-primary">Show</a>
-                              </div>
-                          </div>
-                          
-                        {% endfor %}
-
-
-                        
-  
-                    </div>
-                  </div>
+                    <button class="btn btn-outline-success ml-5 mt-3" type="submit">Search</button>
+                </form>
+              </div>
             </div>
-        </div>
-    </div>
+            
+          </div>
+        <!-- project -->
 
+        {% for ste in page_objAll %}
 
+        <li class="col-md-6 col-lg-4 project shuffle-item filtered p-3" >
+            <div class="card mb-0">
+                <div class="project m-0">
+                    <figure class="portfolio-item">
+                        <div class="hovereffect">
+                            <img class="img-responsive d-flex p-3" src="{{ste.photo.url}}" width="90%" height="200px" alt="">
+                            <div class="overlay">
+                                <div class="hovereffect-title project-icons">
+                                    <a href="{% url 'p_societe' ste.id %}" data-toggle="modal" data-target=".project-modal2"><i class="fa fa-eye"></i></a>
+                                </div>
+                                <!-- / project-icons -->
+                            </div>
+                            <!-- / overlay -->
+                        </div>
+                        <!-- / hovereffect -->
+                    </figure>
+                    <!-- / portfolio-item -->
+                </div>
+                <!-- / project -->
+                <div class="card-body">
+                    <a href="{% url 'p_societe' ste.id %}" class="card-title title-link fs-16 fw-bold">{{ste.name_STE}}</a>
+                    <p class="card-text mt-5 mb-0 fs-14"><b>sience :</b> {{ste.get_year}}</p>
+                </div>
+                <!-- / card-body -->
+            </div>
+            <!-- / card -->
+        </li>
+        <!-- / project -->
 
+        {% endfor %}
 
-
-
-
-    <!-- paginator -->
-    <div class="pagination ">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
-    
-    
+    </ul>
+    <!-- / portfolio -->
 </div>
 
+    
 
 
 

@@ -1,125 +1,92 @@
-{% extends "main_Auth.html" %} 
+{% extends "main_authenticated.html" %} 
 {% load static %}
 
-<!-- 
-{% load crispy_forms_tags %}  -->
+{% load crispy_forms_tags %} 
 
 
 {% block Content %}
 
-<div class="container">
-
-    
-
-    
 
 
     
-      
-    <div class="card mt-5">
-        <div class="card-header position-relative p-3">
-          Featured
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-          <a href="{% url 'createMateriel' %}" class="btn btn-success position-absolute top-0 end-0 ">Create</a>
+<link rel="stylesheet" href="{% static 'css/societes.css' %}">
+
+<div class="container ">
+<ul class="row portfolio lightbox list-unstyled mb-0 shuffle boxed-portfolio" id="grid" >
+    <div class="row text-left mb-3">
+        <div class="col-lg-15 mb-3 mb-sm-0">
+          <div class="mt-5 dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" style="width: 100%;">
+            
+            <form class="">         
+
+                <h5>{{ filter_Material.form.Libell|as_crispy_field}}</h5>  
+                <h5>{{ filter_Material.form.Categorie|as_crispy_field}}</h5>  
+                <h5>{{ filter_Material.form.prix|as_crispy_field}}</h5>  
+
+                <button class="btn btn-outline-success ml-5 " type="submit">Search</button>
+                <a href="{% url 'createMateriel' %}" class="btn btn-success">Create</a>
+            </form>
+          </div>
         </div>
-        <div class="card-body">
-            <div class="container">
-                <div class="row w-100">
+        
+      </div>
+    <!-- project -->
 
-                  <div class="col  border border-secondary d-flex">
-                    <div class="card m-3 badge bg-dark w-100 d-flex">
-                    <form class="">         
+    {% for item in page_objAll %}
 
-                            <span class="badge bg-dark ml-5"><h5></h5>  </span> 
-
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+    <li class="col-md-6 col-lg-4 project shuffle-item filtered p-3" >
+        <div class="card mb-0">
+            <div class="project m-0">
+                <figure class="portfolio-item">
+                    <div class="hovereffect">
+                        <img class="img-responsive d-flex p-3" src="{{ item.photo.url }}" width="90%" height="200px" alt="">
+                        <div class="overlay">
+                            <!-- <div class="hovereffect-title project-icons">
+                            </div> -->
+                            <!-- / project-icons -->
+                        </div>
+                        <!-- / overlay -->
                     </div>
-                        
-
-                  </div>
-                </div>
-                <div class="row w-auto">
-
-                   
-                    <div class="col  pt-3 pr-3 pl-3  border border-secondary ">
-                        <!-- All -->
-                        {% for item in page_objAll %}
-  
-                          <div class="card ">
-                              <div class="card-header">
-                                  {{item.Libell|upper}} :
-                                  <span class="badge bg-dark">{{item.prix|upper}}</span> 
-                                  <form action="" method="POST">
-                                        {% csrf_token %}
-                                  </form>
-                              </div>
-
-                              <div class="card-body">
-                                <div class="container">
-                                    <div class="row">
-                                      <div class="col">
-                                        <img src="{{ item.photo.url }}" class="w-75 h-50" alt="hiiihooo">
-                                      </div>
-                                      <div class="col">
-                                        <ul>
-                                            <li>Name : {{item.Libell|upper}} :</li>
-                                            <li>Categorie : {{item.Categorie|upper}}</li>
-                                            <li>V L : 
-                                                {% if item.VL == True%}
-                                                  Location
-                                                {% else %}
-                                                  Vendre
-                                                {% endif %}
-                                            </li>
-                                            <li>prix : {{item.prix|upper}}</li>
-                                            <li>Phone : 0630022647
-                                            </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                  </div>
-                              </div>
-                          </div>
-                          
-                        {% endfor %}
-
-
-                        
-  
-                    </div>
-                  </div>
+                    <!-- / hovereffect -->
+                </figure>
+                <!-- / portfolio-item -->
             </div>
+            <!-- / project -->
+            <div class="card-body">
+
+                  {{item.Libell|upper}} :
+                </a>
+                <span class="badge bg-dark">{{item.prix|upper}}</span> 
+                <p class="card-text mt-5 mb-0 fs-14"><b>sience :</b> {{me.get_year}}</p>
+                <p class="card-text mt-5 mb-0 fs-14"><b>Categorie : </b> {{item.Categorie|upper}}</p>
+                <p class="card-text mt-5 mb-0 fs-14"><b>V L :
+
+                </b> 
+                  {% if item.VL == True%}
+                    Location
+                  {% else %}
+                    Vendre
+                  {% endif %}
+                </p>
+
+                <p class="card-text mt-5 mb-0 fs-14"><b>Prix :</b> {{item.prix|upper}}</p>
+                <p class="card-text mt-5 mb-0 fs-14"><b>Phone :</b>0630022647</p>
+            </div>
+            <!-- / card-body -->
         </div>
-    </div>
+        <!-- / card -->
+    </li>
+    <!-- / project -->
 
+    {% endfor %}
 
-
-
-
-
-
-    <!-- paginator -->
-    <div class="pagination ">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
-    
-    
+</ul>
+<!-- / portfolio -->
 </div>
+
+
 
 
 

@@ -34,3 +34,5 @@ class Societe(models.Model):
 
    def __str__(self):
       return self.name_STE
+   def get_year(self):
+      return self.created_at.year

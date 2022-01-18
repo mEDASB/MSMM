@@ -47,10 +47,17 @@ def goPost(request,pk):
         if post.ste == ste:
             var = 2
 
+    try:
 
+        ste = request.user.societe
+    except:
+        
+        ste = post.ste
+    
     context = {
         'post':post,
         'var':var,
+        'ste':ste
     }
     return render(request,'post.html',context)
 

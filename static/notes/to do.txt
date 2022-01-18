@@ -1,9 +1,12 @@
 DONE-hidde download page 
 DONE-better design for contact-us page
 DONE-make login and Register forms smalls allitel
--nav bar
--css edit infos
--css home auth (posts)
+DONE-nav bar
+DONE-css home auth (posts)
 -css profile STE and ME and Materiels
+-css edit infos
 -make it all Arabic
 -know password
+-who active who not
+-recover password
+-searsh do (like name)

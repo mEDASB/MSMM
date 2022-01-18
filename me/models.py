@@ -15,7 +15,7 @@ class ME(models.Model):
       ('Pending','Pending')
    )
    ville = models.CharField(max_length=100,null=True,choices=villes)
-   photo = models.ImageField(blank=True,null=True)
+   photo = models.ImageField(blank=True,null=True,default="profile.png")
    created_at = models.DateTimeField(auto_now_add=True)
    full_Name = models.CharField(max_length=50,null=True)
    CIN = models.CharField(max_length=10,null=True)
@@ -33,3 +33,7 @@ class ME(models.Model):
 
    def __str__(self):
       return self.full_Name
+
+   
+   def get_year(self):
+      return self.created_at.year

@@ -4,6 +4,7 @@ from .models import Societe
 from django.core.paginator import Paginator
 from .filter import filterSte
 from django.contrib.auth.decorators import login_required
+from post.models import Post
 @login_required(login_url='login')
 # Create your views here.
 
@@ -41,8 +42,20 @@ def goProfile(request,pk):
 @login_required(login_url='login')
 def MyProfile(request):
     ste = request.user.societe
+    posts = Post.objects.all()
+    posts_ste = []
+    for item in posts:
+        if item.ste == ste:
+            posts_ste.append(item)
+    
+    date = ste.get_year()
+
+    # count_posts = posts_ste.len()
+
     context = {
         'ste':ste,
+        'posts':posts_ste,
+        'date':date,  
     }
     return render(request,'p_STE.html',context)
 

@@ -1,4 +1,4 @@
-{% extends "main_Auth.html" %} 
+{% extends "main_authenticated.html" %} 
 {% load static %}
 
 
@@ -7,95 +7,68 @@
 
 {% block Content %}
 
-<div class="container">
-
-    
-
-    
 
 
     
-      
-    <div class="card mt-5">
-        <div class="card-header position-relative p-3">
-          Featured
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+<link rel="stylesheet" href="{% static 'css/societes.css' %}">
+
+<div class="container ">
+<ul class="row portfolio lightbox list-unstyled mb-0 shuffle boxed-portfolio" id="grid" >
+    <div class="row text-left mb-3">
+        <div class="col-lg-15 mb-3 mb-sm-0">
+          <div class="mt-5 dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" style="width: 100%;">
+            
+            <form class="">         
+
+                <h5>{{ filter_Me.form.full_Name|as_crispy_field}}</h5>  
+                <h5>{{ filter_Me.form.ville|as_crispy_field}}</h5>  
+
+                <button class="btn btn-outline-success ml-5 mt-3" type="submit">Search</button>
+            </form>
+          </div>
         </div>
-        <div class="card-body">
-            <div class="container">
-                <div class="row w-100">
+        
+      </div>
+    <!-- project -->
 
-                  <div class="col  border border-secondary d-flex">
-                    <div class="card m-3 badge bg-dark w-100 d-flex">
+    {% for me in page_objAll %}
 
-                        <form class="">         
-
-                            <span class="badge bg-dark ml-5">{{ filter_Me.form.full_Name|as_crispy_field}}</span> 
-                            <span class="badge bg-dark ml-5">{{ filter_Me.form.ville|as_crispy_field}}</span> 
-
-                             <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+    <li class="col-md-6 col-lg-4 project shuffle-item filtered p-3" >
+        <div class="card mb-0">
+            <div class="project m-0">
+                <figure class="portfolio-item">
+                    <div class="hovereffect">
+                        <img class="img-responsive d-flex p-3" src="{{me.photo.url}}" width="90%" height="200px" alt="">
+                        <div class="overlay">
+                            <div class="hovereffect-title project-icons">
+                                <a href="{% url 'me_profile' me.id %}" data-toggle="modal" data-target=".project-modal2"><i class="fa fa-eye"></i></a>
+                            </div>
+                            <!-- / project-icons -->
+                        </div>
+                        <!-- / overlay -->
                     </div>
-
-
-                  </div>
-                </div>
-                <div class="row w-100">
-
-                   
-                    <div class="col  p-3  border border-secondary flex-grow-1 m-auto">
-                        <!-- All -->
-                        {% for me in page_objAll %}
-  
-                          <div class="card w-80 m-5">
-                              <div class="card-header">
-                                  <h3>{{ me.full_Name }}</h3>
-                              </div>
-
-                              <div class="card-body">
-                                  <a href="{% url 'me_profile' me.id %}" class="btn btn-primary">Show</a>
-                              </div>
-                          </div>
-                          
-                        {% endfor %}
-
-
-                        
-  
-                    </div>
-                  </div>
+                    <!-- / hovereffect -->
+                </figure>
+                <!-- / portfolio-item -->
             </div>
+            <!-- / project -->
+            <div class="card-body">
+                <a href="{% url 'me_profile' me.id %}" class="card-title title-link fs-16 fw-bold">{{ me.full_Name }}</a>
+                <p class="card-text mt-5 mb-0 fs-14"><b>sience :</b> {{me.get_year}}</p>
+            </div>
+            <!-- / card-body -->
         </div>
-    </div>
+        <!-- / card -->
+    </li>
+    <!-- / project -->
 
+    {% endfor %}
 
-
-
-
-
-
-    <!-- paginator -->
-    <div class="pagination ">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
-    
-    
+</ul>
+<!-- / portfolio -->
 </div>
-
 
 
 

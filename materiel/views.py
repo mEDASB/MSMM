@@ -3,6 +3,7 @@ from .models import Material
 from django.core.paginator import Paginator
 from .forms import Materiel_Creation_Form
 from django.contrib.auth.decorators import login_required
+from .filter import FilterMateriel
 
 # Create your views here.
 
@@ -14,11 +15,20 @@ def goMateriels(request):
     page_numberAll = request.GET.get('page')
     page_objAll = paginatorAll.get_page(page_numberAll)
 
+
+    filter_Material = FilterMateriel(request.GET,queryset=materiels)
+    page_objAll = filter_Material.qs
+
     context = {
         'page_objAll':page_objAll,
+        'filter_Material':filter_Material,
 
     }
     return render(request,'materiels.html',context)
+
+
+
+
 
 
 @login_required(login_url='login')

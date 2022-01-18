@@ -1,54 +1,72 @@
-{% extends "main_Auth.html" %} 
+{% extends "main_authenticated.html" %} 
 {% load static %}
 
 
 
 {% block Content %}
 
-<h1>POST {{ post.ste }}</h1>
-   {% if var == 2 %}
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
 
-   <div>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            ...
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'update' post.id  %}">Edit</a></li>
-            <li><a class="dropdown-item" href="{% url 'delete' post.id %}">Delete</a></li>
-            
-              
-        </ul>
+
+<section class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="row align-items-center justify-content-around flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text">
+                    <h3 class="dark-color">
+                        {{post.ste.name_STE|upper}} :
+                        <span class="badge bg-dark">{{post.title|upper}}</span> </h3>
+                    <h4 class="theme-color">Date D'expiration : {{post.date_experation}}</h4>
+                    {% if var == 2 %}
+
+                        <div>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                ...
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'update' post.id  %}">Edit</a></li>
+                                <li><a class="dropdown-item" href="{% url 'delete' post.id %}">Delete</a></li>
+                                
+                                
+                            </ul>
+                        </div>
+                    
+                    {% endif %}
+                    <p>{{post.Description|upper}} </p>
+                    <div class="btn-bar">
+                        
+
+                        <form action="" method="POST">
+
+                            {% csrf_token %}
+                        
+                            {% if request.user.me %}
+                        
+                        
+                                {% if var == 0 %}
+                        
+                                    <a href="{% url 'request' post.id %}" class="btn btn-success">Request</a>
+                                    <!-- <a href="#" class="btn btn-success">Request</a> -->
+                        
+                                
+                                {% elif var == 1 %}
+                        
+                                    <a href="{% url 'unrequest' post.id %}" class="btn btn-success">None</a>
+                        
+                                {% endif %}
+                            
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center">
+                <div class="about-img">
+                    <img src="{{ste.photo.url}}" title="" aria-placeholder="csdvs" alt="">
+                </div>
+            </div>
+        </div>
     </div>
-     
-   {% endif %}
-
-<form action="" method="POST">
-
-    {% csrf_token %}
-
-    {% if request.user.me %}
-
-
-        {% if var == 0 %}
-
-            <a href="{% url 'request' post.id %}" class="btn btn-success">Request</a>
-            <!-- <a href="#" class="btn btn-success">Request</a> -->
-
-        
-        {% elif var == 1 %}
-
-            <a href="{% url 'unrequest' post.id %}" class="btn btn-success">None</a>
-
-        {% endif %}
-      
-    {% endif %}
-
-
-</form>
-
-<h3>{{post.count_Dommand}}</h3>
-
-
-
+</section>
 
 {% endblock Content %}
