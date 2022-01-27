@@ -32,8 +32,9 @@ def goMes(request):
 @login_required(login_url='login')
 def goProfile(request,pk):
     me = ME.objects.get(id=pk)
+    
     context = {
-        'me':me,
+        'me':me
     }
     return render(request,'p_ME.html',context)
 
@@ -41,15 +42,22 @@ def goProfile(request,pk):
 @login_required(login_url='login')
 def ME_MyProfile(request):
     me = request.user.me
+    form = profileForm(instance=me)
+    if request.method == 'POST':
+        form = profileForm(request.POST,request.FILES,instance=me)
+        if form.is_valid():
+            form.save()
+            return redirect('me_myprofile')
     context = {
         'me':me,
+        'form':form,
     }
-    return render(request,'p_ME.html',context)
+    return render(request,'my_p_ME.html',context)
 
 
 
 @login_required(login_url='login')
-def editInfo(request):
+def editInfoME(request):
     me = request.user.me
     form = profileForm(instance=me)
     if request.method == 'POST':

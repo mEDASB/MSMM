@@ -15,7 +15,7 @@
 
 <div class="container ">
     <ul class="row portfolio lightbox list-unstyled mb-0 shuffle boxed-portfolio" id="grid" >
-        <div class="row text-left mb-3">
+        <div class="row text-left mb-3 mt-5 pt-5">
             <div class="col-lg-15 mb-3 mb-sm-0">
               <div class="mt-5 dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" style="width: 100%;">
                 
@@ -29,39 +29,72 @@
               </div>
             </div>
             
-          </div>
+        </div>
         <!-- project -->
 
         {% for ste in page_objAll %}
 
-        <li class="col-md-6 col-lg-4 project shuffle-item filtered p-3" >
-            <div class="card mb-0">
-                <div class="project m-0">
-                    <figure class="portfolio-item">
-                        <div class="hovereffect">
-                            <img class="img-responsive d-flex p-3" src="{{ste.photo.url}}" width="90%" height="200px" alt="">
-                            <div class="overlay">
-                                <div class="hovereffect-title project-icons">
-                                    <a href="{% url 'p_societe' ste.id %}" data-toggle="modal" data-target=".project-modal2"><i class="fa fa-eye"></i></a>
+            {% if ste.id == request.user.societe.id %}
+
+                <li class="col-md-6 col-lg-4 project shuffle-item filtered p-3" >
+                    <div class="card mb-0"  style="background-color:#272E48;">
+                        <div class="project m-0">
+                            <figure class="portfolio-item">
+                                <div class="hovereffect">
+                                    <img class="img-responsive d-flex p-3" src="{{ste.photo.url}}" width="90%" height="200px" alt="">
+                                    <div class="overlay">
+                                        <div class="hovereffect-title project-icons">
+                                            <a href="{% url 'ste_myprofile' %}" data-toggle="modal" data-target=".project-modal2"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                        <!-- / project-icons -->
+                                    </div>
+                                    <!-- / overlay -->
                                 </div>
-                                <!-- / project-icons -->
-                            </div>
-                            <!-- / overlay -->
+                                <!-- / hovereffect -->
+                            </figure>
+                            <!-- / portfolio-item -->
                         </div>
-                        <!-- / hovereffect -->
-                    </figure>
-                    <!-- / portfolio-item -->
-                </div>
+                        <!-- / project -->
+                        <div class="card-body">
+                            <a href="{% url 'ste_myprofile' %}" class="card-title title-link fs-16 fw-bold">{{ste.name_STE}}</a>
+                            <p class="card-text mt-5 mb-0 fs-14"><b>sience :</b> {{ste.get_year}}</p>
+                        </div>
+                        <!-- / card-body -->
+                    </div>
+                    <!-- / card -->
+                </li>
                 <!-- / project -->
-                <div class="card-body">
-                    <a href="{% url 'p_societe' ste.id %}" class="card-title title-link fs-16 fw-bold">{{ste.name_STE}}</a>
-                    <p class="card-text mt-5 mb-0 fs-14"><b>sience :</b> {{ste.get_year}}</p>
-                </div>
-                <!-- / card-body -->
-            </div>
-            <!-- / card -->
-        </li>
-        <!-- / project -->
+            {% else %}
+                <li class="col-md-6 col-lg-4 project shuffle-item filtered p-3" >
+                    <div class="card mb-0"  style="background-color:#272E48;">
+                        <div class="project m-0">
+                            <figure class="portfolio-item">
+                                <div class="hovereffect">
+                                    <img class="img-responsive d-flex p-3" src="{{ste.photo.url}}" width="90%" height="200px" alt="">
+                                    <div class="overlay">
+                                        <div class="hovereffect-title project-icons">
+                                            <a href="{% url 'p_societe' ste.id %}" data-toggle="modal" data-target=".project-modal2"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                        <!-- / project-icons -->
+                                    </div>
+                                    <!-- / overlay -->
+                                </div>
+                                <!-- / hovereffect -->
+                            </figure>
+                            <!-- / portfolio-item -->
+                        </div>
+                        <!-- / project -->
+                        <div class="card-body">
+                            <a href="{% url 'p_societe' ste.id %}" class="card-title title-link fs-16 fw-bold">{{ste.name_STE}}</a>
+                            <p class="card-text mt-5 mb-0 fs-14"><b>sience :</b> {{ste.get_year}}</p>
+                        </div>
+                        <!-- / card-body -->
+                    </div>
+                    <!-- / card -->
+                </li>
+                <!-- / project -->
+            {% endif %}
+
 
         {% endfor %}
 

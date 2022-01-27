@@ -1,7 +1,6 @@
 from django.db import models
 
-from me.models import ME
-from ste.models import Societe
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -23,8 +22,7 @@ class Material(models.Model):
    # not busy => True , busy => False
    # Busy = models.BooleanField(null=True,default=False)
    photo = models.ImageField(null=False)
-   ste = models.ForeignKey(Societe, on_delete=models.CASCADE)
-   me = models.ForeignKey(ME, on_delete=models.CASCADE)  
+   user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
    CATEGORIE = (
       ('in progress','in progress'),
       ('out the order','out the order'),

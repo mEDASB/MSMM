@@ -37,6 +37,8 @@ def createMateriel(request):
     if request.method == 'POST':
         form = Materiel_Creation_Form(request.POST,request.FILES)
         if form.is_valid():
+            materiel = form.save()
+            materiel.ste = request.user.societe
             form.save()
             print("Materiel created successfully")
             return redirect('materiels')

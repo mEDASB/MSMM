@@ -1,0 +1,126 @@
+{% extends "main_authenticated.html" %} 
+{% load static %}
+
+
+
+{% load crispy_forms_tags %} 
+
+{% block Content %}
+
+<link rel="stylesheet" href="{% static 'css/p_STE.css' %}">
+
+
+
+<link rel="stylesheet" href="{% static 'css/p_ME.css' %}">
+
+<form action="" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    <div class="container mt-5 mb-5">
+        <div class="row gutters">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="{{ste.photo.url}}" alt="Maxwell Admin">
+                                </div>
+                                <h5 class="user-name">{{ste.name_STE}}</h5>
+                                <h6 class="user-email">{{request.user.email}}</h6>
+                            </div>
+                            <div class="about">
+                                <h5 class="mb-2 text-primary">Web site</h5>
+                                <p>
+                                   {{ste.web_Site}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-3 text-primary">Personal Details</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div> {{form.name_STE|as_crispy_field}}</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div> {{form.web_Site|as_crispy_field}}</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div> {{form.phone|as_crispy_field}}</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div> {{form.ville|as_crispy_field}}</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div> {{form.domaine|as_crispy_field}}</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div> {{form.desc|as_crispy_field}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters mt-3">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-3 text-primary">Documents</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div>
+                                        {{form.photo|as_crispy_field}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div>{{form.cp_proof|as_crispy_field}}</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+                                <div class="text-right">
+                                    <input type="submit" value="update" class="btn btn-primary">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+{% endblock Content %}

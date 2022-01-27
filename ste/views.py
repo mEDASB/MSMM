@@ -42,22 +42,27 @@ def goProfile(request,pk):
 @login_required(login_url='login')
 def MyProfile(request):
     ste = request.user.societe
+    
+    form = profileForm(instance=ste)
+    if request.method == 'POST':
+        form = profileForm(request.POST,request.FILES,instance=ste)
+        if form.is_valid():
+            form.save()
+            return redirect('ste_myprofile')
+
+    
     posts = Post.objects.all()
     posts_ste = []
     for item in posts:
         if item.ste == ste:
             posts_ste.append(item)
-    
-    date = ste.get_year()
-
-    # count_posts = posts_ste.len()
 
     context = {
         'ste':ste,
         'posts':posts_ste,
-        'date':date,  
+        'form':form,
     }
-    return render(request,'p_STE.html',context)
+    return render(request,'my_p_STE.html',context)
 
 
 @login_required(login_url='login')

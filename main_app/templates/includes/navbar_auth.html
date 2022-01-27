@@ -25,8 +25,11 @@
         <li class="nav-item">
           <a class="nav-link" style="color:#effbff;"  href="{% url 'societes' %}">Societes</a>
         </li>
+
         <li class="nav-item">
+        {% if request.user.societe %}
           <a class="nav-link" style="color:#effbff;"  href="{% url 'mes' %}">ME</a>
+        {% endif %}
         </li>
         <li class="nav-item">
           <a class="nav-link" style="color:#effbff;"  href="{% url 'materiels' %}">Material</a>
@@ -40,14 +43,22 @@
           {% endif %}
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" style="color:#effbff;"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+          <a class="nav-link" style="color:#effbff;"  href="{% url 'logout' %}">Logout</a>
+          <!-- <a class="nav-link dropdown-toggle" style="color:#effbff;"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Setting
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'editInfo' %}">Edit infos</a></li>
+
+              {% if request.user.me %}
+              <li><a class="dropdown-item" href="{% url 'editInfoME' %}">Edit infos</a></li>
+              {% endif %}
+              {% if request.user.societe %}
+              <li><a class="dropdown-item" href="{% url 'editInfo' %}">Edit infos</a></li>
+              {% endif %}
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-          </ul>
+          </ul> -->
         </li>
       </ul>
     </div>

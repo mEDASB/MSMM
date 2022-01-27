@@ -1,7 +1,7 @@
-body{
+/* body{
     background:#eee;
     margin-top:20px;
-}
+} */
 /*------- portfolio -------*/
 .project {
   margin: 15px 0;
@@ -300,7 +300,7 @@ body{
     margin-bottom: 0;
 }
 .title-link, .title-link:focus {
-    color: #171819;
+    color: #BCB6AA;
 }
 .boxed-portfolio .card {
     background-color: #fff;

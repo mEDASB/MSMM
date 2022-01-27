@@ -1,8 +1,14 @@
-body{
+/* body{
     margin-top:20px;
     background:#eee;
     color: #708090;
+} */
+
+.card-bg{
+    background-color: #272E48;
 }
+
+
 .icon-1x {
     font-size: 24px !important;
 }

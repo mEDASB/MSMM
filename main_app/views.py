@@ -75,10 +75,24 @@ def goLogin(request):
             if user is not None:
                 login(request,user)
                 group = user.groups.all()[0].name
+                Log.objects.create(
+                    user=request.user
+                )
+                logs = Log.objects.all()
+                logs_count = []
+                for item in logs:
+                    if item.user == request.user:
+                        logs_count.append(item)
                 if group == 'ME':
-                    return redirect('me_myprofile')
+                    if len(logs_count) == 1 :
+                        return redirect('editInfoME')
+                    elif len(logs_count) > 1 :
+                        return redirect('me_myprofile')
                 elif group == 'STE':
-                    return redirect('ste_myprofile')
+                    if len(logs_count) == 1 :
+                        return redirect('editInfo')
+                    elif len(logs_count) > 1 :
+                        return redirect('ste_myprofile')
                 
         context = {
             # 'group':group,
