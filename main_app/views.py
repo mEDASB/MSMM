@@ -41,7 +41,6 @@ def goRegister(request):
                 groupSTE = Group.objects.get(name='STE')
                 who = request.POST.get('who')
                 if who == "ME":
-
                     ME.objects.create(
                         user = user,
                         full_Name = user.username
@@ -90,7 +89,7 @@ def goLogin(request):
                         return redirect('me_myprofile')
                 elif group == 'STE':
                     if len(logs_count) == 1 :
-                        return redirect('editInfo')
+                        return redirect('editInfoSTE')
                     elif len(logs_count) > 1 :
                         return redirect('ste_myprofile')
                 

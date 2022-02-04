@@ -77,5 +77,5 @@ def editInfo(request):
     context = {
         'form':form,
     }
-    return render(request,'editInfo.html',context)
+    return render(request,'editInfoSTE.html',context)
 

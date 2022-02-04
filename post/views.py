@@ -6,12 +6,15 @@ from .forms import create_post_form
 from post.models import Post
 from django.core.paginator import Paginator
 from .filter import filterSte
+from django.views.decorators.cache import cache_control
 
 from django.contrib.auth.decorators import login_required
+from main_app.decorator import unllowUsers
 # Create your views here.
 
 
 @login_required(login_url='login')
+@cache_control(no_cache=True, must_revalidate=True)
 def goPosts(request):
     # All
     posts = Post.objects.all()

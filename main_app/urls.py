@@ -11,6 +11,5 @@ urlpatterns = [
     path('register/', views.goRegister,name='register'),
     path('logout/', views.goLogout,name='logout'),
 
-    # functions process
-    # path('choose_group', views.chooseGroup,name='choose'),
+    
 ]
