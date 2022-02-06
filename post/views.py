@@ -10,6 +10,7 @@ from django.views.decorators.cache import cache_control
 
 from django.contrib.auth.decorators import login_required
 from main_app.decorator import unllowUsers
+import datetime
 # Create your views here.
 
 
@@ -18,15 +19,31 @@ from main_app.decorator import unllowUsers
 def goPosts(request):
     # All
     posts = Post.objects.all()
-    paginatorAll = Paginator(posts, 5) 
-    page_numberAll = request.GET.get('page')
-    page_objAll = paginatorAll.get_page(page_numberAll)
 
-    filter_Ste = filterSte(request.GET,queryset=posts)
+    current_datetime = datetime.datetime.now()
+    year = current_datetime.year
+    month = current_datetime.month
+    day = current_datetime.day
+    for item in posts:
+        i_year = item.date_experation.year
+        i_month = item.date_experation.month
+        i_day = item.date_experation.day
+        if (i_year <= year) and (i_month <= month) and (i_day <= day):
+            item.expiration = True
+            item.save()
+
+    posts_not_Exp = Post.objects.filter(expiration = False)
+
+    filter_Ste = filterSte(request.GET,queryset=posts_not_Exp)
     page_objAll = filter_Ste.qs
 
+    paginator = Paginator(page_objAll, 5) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
     context = {
-        'page_objAll':page_objAll,
+        'page_obj':page_obj,
         'filter_Ste':filter_Ste,
     }
     return render(request,'posts.html',context)

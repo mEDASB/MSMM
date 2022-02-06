@@ -18,6 +18,7 @@ class Post(models.Model):
    count_Dommand = models.IntegerField(null=True,default=0)
    me = models.ManyToManyField(ME,through='MePost')
    ste = models.ForeignKey(Societe, on_delete=models.CASCADE,null=True)
+   expiration = models.BooleanField(null=True,default=False)
 
    class Meta:
         ordering = ['create_at'] 

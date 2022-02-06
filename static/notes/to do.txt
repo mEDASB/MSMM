@@ -9,9 +9,9 @@ DONE-script for choose
 DONE-css profile STE and ME and Materiels
 DONE-recover password
 DONE-pagination
+DONE-date d'expiration post
 
 -searsh do (like name)
--date d'expiration post
 
 -make the user completing his informations
 -know password

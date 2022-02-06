@@ -34,7 +34,7 @@
             
           </div>
           <!-- End of post 1 -->
-          {% for post in page_objAll %}
+          {% for post in page_obj %}
 
           <div class="card card-bg row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
             <div class="row align-items-center">
@@ -55,6 +55,24 @@
           </div>
 
           {% endfor %}
+          <!-- pagination -->
+              <div class="pagination  d-flex justify-content-center">
+                <span class="step-links badge bg-secondary bg-dark p-2 m-3">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+              
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+              
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+              </div>
           <!-- /End of post 1 -->
           
         </div>
