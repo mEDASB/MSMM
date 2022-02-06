@@ -8,10 +8,10 @@ DONE-Remove edit infaos
 DONE-script for choose
 DONE-css profile STE and ME and Materiels
 DONE-recover password
+DONE-pagination
 
 -searsh do (like name)
--pagination
--date dexperation post
+-date d'expiration post
 
 -make the user completing his informations
 -know password

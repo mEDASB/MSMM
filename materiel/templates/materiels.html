@@ -34,7 +34,7 @@
       </div>
     <!-- project -->
 
-    {% for item in page_objAll %}
+    {% for item in page_obj %}
 
     <li class="col-md-6 col-lg-4 project shuffle-item filtered p-3 " >
         <div class="card mb-0"   style="background-color:#272E48;">
@@ -84,6 +84,25 @@
 
 </ul>
 <!-- / portfolio -->
+<div class="pagination  d-flex justify-content-center">
+  <span class="step-links badge bg-secondary bg-dark p-2 m-3">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+  </span>
+</div>
+
+
 </div>
 
 

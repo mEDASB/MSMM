@@ -11,16 +11,17 @@ from .filter import FilterMateriel
 @login_required(login_url='login')
 def goMateriels(request):
     materiels = Material.objects.all()
-    paginatorAll = Paginator(materiels,5)
-    page_numberAll = request.GET.get('page')
-    page_objAll = paginatorAll.get_page(page_numberAll)
-
-
     filter_Material = FilterMateriel(request.GET,queryset=materiels)
     page_objAll = filter_Material.qs
 
+    paginator = Paginator(page_objAll,5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
+
     context = {
-        'page_objAll':page_objAll,
+        'page_obj':page_obj,
         'filter_Material':filter_Material,
 
     }

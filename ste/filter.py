@@ -4,7 +4,6 @@ from django import forms
 
 
 
-
 class filterSte(django_filters.FilterSet):
 
     class Meta:
