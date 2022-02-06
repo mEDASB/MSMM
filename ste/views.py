@@ -15,15 +15,16 @@ from post.models import Post
 def goSTE(request):
     # All
     societes = Societe.objects.all()
-    paginatorAll = Paginator(societes, 5) 
-    page_numberAll = request.GET.get('page')
-    page_objAll = paginatorAll.get_page(page_numberAll)
-
     filter_Ste = filterSte(request.GET,queryset=societes)
     page_objAll = filter_Ste.qs
 
+    paginator = Paginator(page_objAll, 6) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
     context = {
-        'page_objAll':page_objAll,
+        'page_obj':page_obj,
         'filter_Ste':filter_Ste,
     }
     return render(request,'societes.html',context)

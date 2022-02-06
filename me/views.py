@@ -15,15 +15,16 @@ from .decorator import allowUsers
 def goMes(request):
     # All
     mes = ME.objects.all()
-    paginatorAll = Paginator(mes, 5) 
-    page_numberAll = request.GET.get('page')
-    page_objAll = paginatorAll.get_page(page_numberAll)
-
     filter_Me = filterMe(request.GET,queryset=mes)
     page_objAll = filter_Me.qs
 
+    paginator = Paginator(page_objAll, 5) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
     context = {
-        'page_objAll':page_objAll,
+        'page_obj':page_obj,
         'filter_Me':filter_Me,
     }
     return render(request,'mes.html',context)
