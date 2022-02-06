@@ -9,12 +9,13 @@ from .filter import filterSte
 from django.views.decorators.cache import cache_control
 
 from django.contrib.auth.decorators import login_required
-from main_app.decorator import unllowUsers
+from main_app.decorator import Completig_Infos
 import datetime
 # Create your views here.
 
 
 @login_required(login_url='login')
+@Completig_Infos()
 @cache_control(no_cache=True, must_revalidate=True)
 def goPosts(request):
     # All
@@ -51,6 +52,7 @@ def goPosts(request):
 
 
 @login_required(login_url='login')
+@Completig_Infos()
 def goPost(request,pk):
     var = 0 
     post = Post.objects.get(id=pk)
@@ -116,6 +118,7 @@ def unRequest(request,pk):
 
 
 @login_required(login_url='login')
+@Completig_Infos()
 def Create(request):
     form = create_post_form()
     if request.method == 'POST':

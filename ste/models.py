@@ -23,6 +23,7 @@ class Societe(models.Model):
    desc = models.TextField(null=True)
    cp_proof = models.ImageField(null=False)
    active = models.BooleanField(null=True,default=False)
+   is_completed = models.BooleanField(null=True,default=False)
    DOMAINES = (
       ('in progress','in progress'),
       ('out the order','out the order'),

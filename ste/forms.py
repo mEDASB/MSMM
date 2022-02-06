@@ -11,4 +11,4 @@ class profileForm(ModelForm):
     class Meta:
         model = Societe
         fields = '__all__'
-        exclude = ['user']
+        exclude = ['user','is_completed']

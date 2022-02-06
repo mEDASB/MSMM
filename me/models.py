@@ -22,6 +22,7 @@ class ME(models.Model):
    cp_CIN = models.ImageField(null=True)
    Busy = models.BooleanField(null=True,default=False)
    active = models.BooleanField(null=True,default=False)
+   is_completed = models.BooleanField(null=True,default=False)
    DOMAINES = (
       ('in progress','in progress'),
       ('out the order','out the order'),

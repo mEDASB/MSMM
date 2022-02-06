@@ -9,22 +9,19 @@ from .models import *
 
 
 
-def unllowUsers():
+def Completig_Infos():
     def decorator(viewfunc):
         def wrapper_func(request,*args, **kwargs):
-            logs = Log.objects.all()
-            logs_count = []
-            for item in logs:
-                if item.user == request.user:
-                    logs_count.append(item)
+
             group=request.user.groups.all()[0].name
-            if len(logs_count) == 1 :
-                if group == 'ME':
+            if group == 'ME':
+                if request.user.me.is_completed == False:
                     return redirect('editInfoME')
-                elif group == 'STE':
-                    return redirect('editInfo')
-            elif len(logs_count) > 1 :
-                return redirect('posts')
+            elif group == 'STE':
+                if request.user.societe.is_completed == False:
+                    return redirect('editInfoSTE')
+            
+            return viewfunc(request,*args, **kwargs)
         return wrapper_func
     return decorator
 

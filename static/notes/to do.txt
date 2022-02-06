@@ -10,11 +10,10 @@ DONE-css profile STE and ME and Materiels
 DONE-recover password
 DONE-pagination
 DONE-date d'expiration post
+DONE-make the user completing his informations
 
 -searsh do (like name)
 
--make the user completing his informations
--know password
 -who active who not
 -make it all Arabic
 

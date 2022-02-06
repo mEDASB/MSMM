@@ -5,13 +5,15 @@ from django.core.paginator import Paginator
 from .filter import filterSte
 from django.contrib.auth.decorators import login_required
 from post.models import Post
-@login_required(login_url='login')
+from main_app.decorator import Completig_Infos
+
 # Create your views here.
 
 
 
 
 @login_required(login_url='login')
+@Completig_Infos()
 def goSTE(request):
     # All
     societes = Societe.objects.all()
@@ -31,6 +33,7 @@ def goSTE(request):
 
 
 @login_required(login_url='login')
+@Completig_Infos()
 def goProfile(request,pk):
     ste = Societe.objects.get(id=pk)
     context = {
@@ -41,6 +44,7 @@ def goProfile(request,pk):
 
 
 @login_required(login_url='login')
+@Completig_Infos()
 def MyProfile(request):
     ste = request.user.societe
     
@@ -73,7 +77,9 @@ def editInfo(request):
     if request.method == 'POST':
         form = profileForm(request.POST,request.FILES,instance=ste)
         if form.is_valid():
-            form.save()
+            societe = form.save()
+            societe.is_completed = True
+            societe.save()
             return redirect('ste_myprofile')
     context = {
         'form':form,

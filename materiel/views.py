@@ -4,11 +4,13 @@ from django.core.paginator import Paginator
 from .forms import Materiel_Creation_Form
 from django.contrib.auth.decorators import login_required
 from .filter import FilterMateriel
+from main_app.decorator import Completig_Infos
 
 # Create your views here.
 
 
 @login_required(login_url='login')
+@Completig_Infos()
 def goMateriels(request):
     materiels = Material.objects.all()
     filter_Material = FilterMateriel(request.GET,queryset=materiels)
@@ -33,6 +35,7 @@ def goMateriels(request):
 
 
 @login_required(login_url='login')
+@Completig_Infos()
 def createMateriel(request):
     form = Materiel_Creation_Form()
     if request.method == 'POST':
