@@ -174,13 +174,13 @@ STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # new
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'smcor64@gmail.com'
-EMAIL_HOST_PASSWORD = 'Xr9mPnUa3DkasSN'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST_PASSWORD = 'ASB157320ScorProgsmcor'
 
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LfWgW8dAAAAAN79wekbqe9t56ccSml3qrR-nAlO'

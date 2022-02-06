@@ -5,14 +5,18 @@ DONE-nav bar
 DONE-css home auth (posts)
 DONE-ste and me exclude from produit
 DONE-Remove edit infaos
+DONE-script for choose
 DONE-css profile STE and ME and Materiels
--make the user camplet his informations
--know password
--who active who not
--recover password
+DONE-recover password
+
 -searsh do (like name)
 -pagination
--materio
--script for choose
 -date dexperation post
+
+-make the user completing his informations
+-know password
+-who active who not
 -make it all Arabic
+
+
+-token git ' vscode://vscode.github-authentication/did-authenticate?windowid=1&code=edd297b848f40b43e953&state=e5e63043-82d6-4a57-afe9-58a1013e97c2 '

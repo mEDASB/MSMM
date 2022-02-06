@@ -25,6 +25,8 @@ urlpatterns = [
     path('', include('me.urls')),
     path('', include('post.urls')),
     path('', include('materiel.urls')),
+
+
 ]
 
 
