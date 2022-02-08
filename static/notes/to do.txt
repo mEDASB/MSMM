@@ -14,7 +14,7 @@ DONE-make the user completing his informations
 
 -searsh do (like name)
 
--who active who not
+-make better style for profiles
 -create the captcha on login and register
 -work on payment section
 -work on post and who make a request in it 

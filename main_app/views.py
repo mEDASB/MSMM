@@ -9,6 +9,9 @@ from ste.models import *
 from .models import *
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+import requests
+from django.conf import settings
+from django.contrib import messages
 
 
 
@@ -36,24 +39,34 @@ def goRegister(request):
         if request.method == 'POST':
             form = registerForm(request.POST)
             if form.is_valid():
-                user = form.save()
-                groupME = Group.objects.get(name='ME')
-                groupSTE = Group.objects.get(name='STE')
-                who = request.POST.get('who')
-                if who == "ME":
-                    ME.objects.create(
-                        user = user,
-                        full_Name = user.username
-                    )
-                    user.groups.add(groupME)
-                elif who == 'STE':
-                    Societe.objects.create(
-                        user = user,
-                        name_STE = user.username
-                    )
-                    user.groups.add(groupSTE)
-                print("create successfully !!!!!")
-                return redirect('login')
+                recaptcha_response = request.POST.get("g-recaptcha-response")
+                data = {
+                    'secret' : settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                    'response':recaptcha_response
+                }
+                rJson = requests.post('https://www.google.com/recaptcha/api/siteverify',data=data)
+                result = rJson.json()
+                if result["success"]:
+                    user = form.save()
+                    groupME = Group.objects.get(name='ME')
+                    groupSTE = Group.objects.get(name='STE')
+                    who = request.POST.get('who')
+                    if who == "ME":
+                        ME.objects.create(
+                            user = user,
+                            full_Name = user.username
+                        )
+                        user.groups.add(groupME)
+                    elif who == 'STE':
+                        Societe.objects.create(
+                            user = user,
+                            name_STE = user.username
+                        )
+                        user.groups.add(groupSTE)
+                    print("create successfully !!!!!")
+                    return redirect('login')
+                else:
+                    messages.error(request,"please check i'm not a robot")
             
         context = {
             'form':form
@@ -72,26 +85,34 @@ def goLogin(request):
             user = authenticate(request,username=username,password=password)
             
             if user is not None:
-                login(request,user)
-                group = user.groups.all()[0].name
-                Log.objects.create(
-                    user=request.user
-                )
-                logs = Log.objects.all()
-                logs_count = []
-                for item in logs:
-                    if item.user == request.user:
-                        logs_count.append(item)
-                if group == 'ME':
-                    if len(logs_count) == 1 :
-                        return redirect('editInfoME')
-                    elif len(logs_count) > 1 :
-                        return redirect('me_myprofile')
-                elif group == 'STE':
-                    if len(logs_count) == 1 :
-                        return redirect('editInfoSTE')
-                    elif len(logs_count) > 1 :
-                        return redirect('ste_myprofile')
+                recaptcha_response = request.POST.get("g-recaptcha-response")
+                data = {
+                    'secret' : settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                    'response':recaptcha_response
+                }
+                rJson = requests.post('https://www.google.com/recaptcha/api/siteverify',data=data)
+                result = rJson.json()
+                if result["success"]:
+                    login(request,user)
+                    group = user.groups.all()[0].name
+                    Log.objects.create(
+                        user=request.user
+                    )
+                    logs = Log.objects.all()
+                    logs_count = []
+                    for item in logs:
+                        if item.user == request.user:
+                            logs_count.append(item)
+                    if group == 'ME':
+                        if len(logs_count) == 1 :
+                            return redirect('editInfoME')
+                        elif len(logs_count) > 1 :
+                            return redirect('me_myprofile')
+                    elif group == 'STE':
+                        if len(logs_count) == 1 :
+                            return redirect('editInfoSTE')
+                        elif len(logs_count) > 1 :
+                            return redirect('ste_myprofile')
                 
         context = {
             # 'group':group,
