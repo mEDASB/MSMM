@@ -15,7 +15,13 @@ DONE-make the user completing his informations
 -searsh do (like name)
 
 -who active who not
+-create the captcha on login and register
+-work on payment section
+-work on post and who make a request in it 
 -make it all Arabic
+
+
+
 
 
 -token git ' vscode://vscode.github-authentication/did-authenticate?windowid=1&code=edd297b848f40b43e953&state=e5e63043-82d6-4a57-afe9-58a1013e97c2 '
