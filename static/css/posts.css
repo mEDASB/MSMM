@@ -1,9 +1,6 @@
-/* body{
-    margin-top:20px;
-    background:#eee;
-    color: #708090;
-} */
-
+body{
+    background: -webkit-linear-gradient(left, #E5BBCE, #4D8DB2);
+}
 .card-bg{
     background-color: #272E48;
 }

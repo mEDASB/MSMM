@@ -1,7 +1,6 @@
-/* body{
-    background:#eee;
-    margin-top:20px;
-} */
+body{
+  background: -webkit-linear-gradient(left, #E5BBCE, #4D8DB2);
+}
 /*------- portfolio -------*/
 .project {
   margin: 15px 0;

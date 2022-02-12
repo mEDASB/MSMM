@@ -1,4 +1,6 @@
-
+body{
+  background-color: #232e3d;    
+}
 /* About Me 
 ---------------------*/
 @media (max-width: 991px) {
@@ -113,7 +115,7 @@
     position: relative;
 }
 .gray-bg {
-    background-color: #ebf4fa;
+  background-color: #232e3d;  
 }
 .px-btn.theme {
     background: #fe4f6c;

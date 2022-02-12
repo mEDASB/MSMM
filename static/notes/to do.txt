@@ -11,13 +11,13 @@ DONE-recover password
 DONE-pagination
 DONE-date d'expiration post
 DONE-make the user completing his informations
+DONE-create the captcha on login and register
+DONE-make better style for profiles
+DONE-work on post and who make a request in it 
 
--searsh do (like name)
 
--make better style for profiles
--create the captcha on login and register
+
 -work on payment section
--work on post and who make a request in it 
 -make it all Arabic
 
 

@@ -36,8 +36,20 @@ def goSTE(request):
 @Completig_Infos()
 def goProfile(request,pk):
     ste = Societe.objects.get(id=pk)
+    email = ste.user.email
+
+
+    posts = Post.objects.all().filter(ste=ste)
+    
+    paginator = Paginator(posts, 2) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
     context = {
         'ste':ste,
+        'email':email,
+        'page_obj':page_obj,
     }
     return render(request,'p_STE.html',context)
 

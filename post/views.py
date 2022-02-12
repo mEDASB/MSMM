@@ -56,6 +56,7 @@ def goPosts(request):
 def goPost(request,pk):
     var = 0 
     post = Post.objects.get(id=pk)
+    
     group=request.user.groups.all()[0].name
     if group == "ME":
         me = request.user.me
@@ -75,11 +76,18 @@ def goPost(request,pk):
     except:
         
         ste = post.ste
-    
+
+    # me for this post
+
+    me_post = MePost.objects.all().filter(post= post)
+    # mes = ME.objects.all().filter(me = me_post.me)
+
+
     context = {
         'post':post,
         'var':var,
-        'ste':ste
+        'ste':ste,
+        'mes':me_post,
     }
     return render(request,'post.html',context)
 
