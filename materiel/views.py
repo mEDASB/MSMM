@@ -16,7 +16,7 @@ def goMateriels(request):
     filter_Material = FilterMateriel(request.GET,queryset=materiels)
     page_objAll = filter_Material.qs
 
-    paginator = Paginator(page_objAll,5)
+    paginator = Paginator(page_objAll,10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

@@ -19,6 +19,7 @@ DONE-work on post and who make a request in it
 
 -work on payment section
 -make it all Arabic
+-make page of posts of avery societe
 
 
 

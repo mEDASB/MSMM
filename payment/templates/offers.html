@@ -1,0 +1,78 @@
+{% extends "main_authenticated.html" %} 
+{% load static %}
+
+
+
+{% block Content %}
+
+    <div class="demo" style="background: #10202b;">
+           <div class="container">
+               <div class="row text-center">
+                   <h1 class="heading-title">CHOOSE YOUR OFFER </h1>
+               </div>
+   
+               <div class="row">
+                   <div class="col-md-3 col-sm-6">
+                       <div class="pricingTable">
+                           <div class="pricingTable-header">
+                               <span class="heading">
+                                   <h3>Free trial</h3>
+                               </span>
+                               <span class="price-value">$0<span class="month">tow month free</span></span>
+                           </div>
+                           <div class="pricingTable-sign-up">
+                               <a href="{% url 'choose_offer' request.user.id %}" class="btn btn-default" >purchase</a>
+                           </div>
+                       </div>
+                   </div>
+   
+                   
+                   <div class="col-md-3 col-sm-6">
+                        <div class="pricingTable">
+                            <div class="pricingTable-header">
+                                <span class="heading">
+                                    <h3>Standard</h3>
+                                </span>
+                                <span class="price-value">$100<span class="month">per Month</span></span>
+                            </div>
+                            <div class="pricingTable-sign-up">
+                                <a href="#" class="btn btn-default" >purchase</a>
+                            </div>
+                        </div>
+                    </div>
+   
+                   <div class="col-md-3 col-sm-6">
+                       <div class="pricingTable">
+                           <div class="pricingTable-header">
+                               <span class="heading">
+                                   <h3>1/2 Year</h3>
+                               </span>
+                               <span class="price-value">$90<span class="month">per Month</span></span>
+                           </div>
+                           <div class="pricingTable-sign-up">
+                               <a href="#" class="btn btn-default" >purchase</a>
+                           </div>
+                       </div>
+                   </div>
+   
+                   <div class="col-md-3 col-sm-6">
+                       <div class="pricingTable">
+                           <div class="pricingTable-header">
+                               <span class="heading">
+                                   <h3>1 Year</h3>
+                               </span>
+                               <span class="price-value">$70<span class="month">per Month</span></span>
+                           </div>
+                           <div class="pricingTable-sign-up">
+                               <a href="#" class="btn btn-default" >purchase</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   
+
+
+
+{% endblock Content %}
